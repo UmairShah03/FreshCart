@@ -1,5 +1,5 @@
 <?php
 
-$conn = mysqli_connect("localhost", "root", "", "freshcart");
+$conn = mysqli_connect('localhost','root','','freshcart');
 
 ?>
