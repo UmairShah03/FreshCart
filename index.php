@@ -479,7 +479,7 @@
                 </ul>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="dashboard/index.html">
+                <a class="nav-link" href="dashboard/index.php">
                   Dashboard
                 </a>
               </li>
@@ -489,7 +489,7 @@
                   Docs
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="navbarDropdownDocs">
-                  <a class="dropdown-item align-items-start" href="docs/index.html">
+                  <a class="dropdown-item align-items-start" href="docs/index.php">
                     <div>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         class="bi bi-file-text text-primary" viewBox="0 0 16 16">

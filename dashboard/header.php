@@ -1,5 +1,15 @@
 <?php 
 include "config.php";
+session_start();
+if(!isset($_SESSION['email'])){
+echo "<script>
+
+    window.location.href = 'login.php';
+
+</script>";
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -232,7 +242,7 @@ include "config.php";
                                     </ul>
                                     <div class="border-top px-5 py-3">
 
-                                        <a href="#">Log Out</a>
+                                        <a href="logout.php">Log Out</a>
                                     </div>
 
 
