@@ -1,5 +1,15 @@
 <?php 
 include "config.php";
+session_start();
+if(!isset($_SESSION['email'])){
+echo "<script>
+
+    window.location.href = 'login.php';
+
+</script>";
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -232,7 +242,7 @@ include "config.php";
                                     </ul>
                                     <div class="border-top px-5 py-3">
 
-                                        <a href="#">Log Out</a>
+                                        <a href="logout.php">Log Out</a>
                                     </div>
 
 
@@ -713,21 +723,6 @@ include "config.php";
 
             </nav>
 
-            <!-- Libs JS -->
-            <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-            <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
 
-            <!-- Theme JS -->
-            <script src="../assets/js/theme.min.js"></script>
-            <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-            <script src="../assets/js/vendors/chart.js"></script>
-
-</body>
-
-
-<!-- Mirrored from freshcart.codescandy.com/dashboard/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Mar 2023 10:10:46 GMT -->
-
-</html>
 
 

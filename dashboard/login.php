@@ -1,8 +1,35 @@
 <?php
+include 'config.php';
+session_start();
 
 
+if(isset($_SESSION['email'])){
+    header("location: index.php");
+}
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+
+    $fetch = "SELECT * FROM `login` WHERE email = '{$email}' AND  password = '{$pass}'";
+    $fetchRes = mysqli_query($conn, $fetch);
+    
+    if (mysqli_num_rows($fetchRes) == 1) {
+        $_SESSION['email'] = $email;
+        $success = "Successfully Login";
+
+        echo "<script>
+        setTimeout(() => {
+            window.location.href = 'index.php';
+        }, 0);
+    </script>";
+    } else {
+        $exist = "Incorrect Email or password";
+    }
+}
 
 ?>
+
+
 
 <style>
     @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
@@ -122,16 +149,23 @@
 </head>
 
 <body>
+    
     <div class="container" onclick="onclick">
+
         <div class="top"></div>
         <div class="bottom"></div>
         <div class="center">
             <h2>Please Sign In</h2>
-            <input type="email" placeholder="email" />
-            <input type="password" placeholder="password" />
+            <form method="post">
+            <input type="email" placeholder="email" name = "email" />
+            <input type="password" placeholder="password" name = "password" />
+            <input type="submit" value="Login" name = "login">
+            </form>
             <h2>&nbsp;</h2>
         </div>
     </div>
+
+    
 </body>
 
 </html>

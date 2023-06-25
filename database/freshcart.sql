@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 09:58 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jun 23, 2023 at 04:30 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,7 @@ CREATE TABLE `add_category` (
   `status` varchar(100) NOT NULL,
   `mega-title` varchar(100) NOT NULL,
   `meda_des` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `add_category`
@@ -48,6 +48,25 @@ INSERT INTO `add_category` (`id`, `image`, `c_name`, `slug`, `date`, `descriptio
 (2, 'baby-care.png', 'baby care ', 'no ', '2023-06-26', '', 'option1', 'wefewf', 'wefewf'),
 (3, 'baby-care.png', 'baby care ', 'no ', '2023-06-26', '', 'option1', 'wefewf', 'wefewf'),
 (4, 'category-bakery-biscuits.jpg', 'oreo ', 'no ', '2023-06-20', 'wqdwqdwq', 'option2', 'wefewf', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `email` varchar(1000) NOT NULL,
+  `password` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `email`, `password`) VALUES
+(1, 'freshcart@gmail.com', 'freshcart123');
 
 --
 -- Indexes for dumped tables
@@ -60,6 +79,12 @@ ALTER TABLE `add_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -68,6 +93,12 @@ ALTER TABLE `add_category`
 --
 ALTER TABLE `add_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
