@@ -1,4 +1,5 @@
 <?php
+//make this page proper php login?
 include 'config.php';
 session_start();
 
@@ -29,143 +30,376 @@ if (isset($_POST['login'])) {
 
 ?>
 
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
-    *,
-    *:before,
-    *:after {
-        box-sizing: border-box;
-    }
-
-    body {
-        min-height: 100vh;
-        font-family: 'Raleway', sans-serif;
-    }
-
-    .container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .container:hover .top:before,
-    .container:active .top:before,
-    .container:hover .bottom:before,
-    .container:active .bottom:before,
-    .container:hover .top:after,
-    .container:active .top:after,
-    .container:hover .bottom:after,
-    .container:active .bottom:after {
-        margin-left: 200px;
-        transform-origin: -200px 50%;
-        transition-delay: 0s;
-    }
-
-    .container:hover .center,
-    .container:active .center {
-        opacity: 1;
-        transition-delay: 0.2s;
-    }
-
-    .top:before,
-    .bottom:before,
-    .top:after,
-    .bottom:after {
-        content: '';
-        display: block;
-        position: absolute;
-        width: 200vmax;
-        height: 200vmax;
-        top: 50%;
-        left: 50%;
-        margin-top: -100vmax;
-        transform-origin: 0 50%;
-        transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
-        z-index: 10;
-        opacity: 0.65;
-        transition-delay: 0.2s;
-    }
-
-    .top:before {
-        transform: rotate(45deg);
-        background: #e46569;
-    }
-
-    .top:after {
-        transform: rotate(135deg);
-        background: #ecaf81;
-    }
-
-    .bottom:before {
-        transform: rotate(-45deg);
-        background: #60b8d4;
-    }
-
-    .bottom:after {
-        transform: rotate(-135deg);
-        background: #3745b5;
-    }
-
-    .center {
-        position: absolute;
-        width: 400px;
-        height: 400px;
-        top: 50%;
-        left: 50%;
-        margin-left: -200px;
-        margin-top: -200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-        opacity: 0;
-        transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
-        transition-delay: 0s;
-        color: #333;
-    }
-
-    .center input {
-        width: 100%;
-        padding: 15px;
-        margin: 5px;
-        border-radius: 1px;
-        border: 1px solid #ccc;
-        font-family: inherit;
-    }
-</style>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Panda Form</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="login.css">
+  </head>
+  <body>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-</head>
-
-<body>
-    
-    <div class="container" onclick="onclick">
-
-        <div class="top"></div>
-        <div class="bottom"></div>
-        <div class="center">
-            <h2>Please Sign In</h2>
-            <form method="post">
-            <input type="email" placeholder="email" name = "email" />
-            <input type="password" placeholder="password" name = "password" />
-            <input type="submit" value="Login" name = "login">
-            </form>
-            <h2>&nbsp;</h2>
+  <style>
+	* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #6baf6b	;
+}
+.container {
+  height: 31.25em;
+  width: 31.25em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+form {
+  width: 23.75em;
+  height: 18.75em;
+  background-color: #ffffff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: calc(50% + 3.1em);
+  left: 50%;
+  padding: 0 3.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.5em;
+}
+form label {
+  display: block;
+  margin-bottom: 0.2em;
+  font-weight: 600;
+  color: #2e0d30;
+}
+form input {
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #3f3554;
+  padding: 0.3em;
+  border: none;
+  border-bottom: 0.12em solid #3f3554;
+  outline: none;
+}
+form input:focus {
+  border-color: #f4c531;
+}
+form input:not(:last-child) {
+  margin-bottom: 0.9em;
+}
+form button {
+  font-size: 0.95em;
+  padding: 0.8em 0;
+  border-radius: 2em;
+  border: none;
+  outline: none;
+  background-color: #6baf6b;
+  color: #2e0d30;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-top: 0.8em;
+}
+form button:hover{
+	background-color:#3f3554 ;
+	color: #6baf6b;
+}
+.panda-face {
+  height: 7.5em;
+  width: 8.4em;
+  background-color: #ffffff;
+  border: 0.18em solid #2e0d30;
+  border-radius: 7.5em 7.5em 5.62em 5.62em;
+  position: absolute;
+  top: 2em;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+.ear-l,
+.ear-r {
+  background-color: #3f3554;
+  height: 2.5em;
+  width: 2.81em;
+  border: 0.18em solid #2e0d30;
+  border-radius: 2.5em 2.5em 0 0;
+  top: 1.75em;
+  position: absolute;
+}
+.ear-l {
+  transform: rotate(-38deg);
+  left: 10.75em;
+}
+.ear-r {
+  transform: rotate(38deg);
+  right: 10.75em;
+}
+.blush-l,
+.blush-r {
+  background-color: #ff8bb1;
+  height: 1em;
+  width: 1.37em;
+  border-radius: 50%;
+  position: absolute;
+  top: 4em;
+}
+.blush-l {
+  transform: rotate(25deg);
+  left: 1em;
+}
+.blush-r {
+  transform: rotate(-25deg);
+  right: 1em;
+}
+.eye-l,
+.eye-r {
+  background-color: #3f3554;
+  height: 2.18em;
+  width: 2em;
+  border-radius: 2em;
+  position: absolute;
+  top: 2.18em;
+}
+.eye-l {
+  left: 1.37em;
+  transform: rotate(-20deg);
+}
+.eye-r {
+  right: 1.37em;
+  transform: rotate(20deg);
+}
+.eyeball-l,
+.eyeball-r {
+  height: 0.6em;
+  width: 0.6em;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  left: 0.6em;
+  top: 0.6em;
+  transition: 1s all;
+}
+.eyeball-l {
+  transform: rotate(20deg);
+}
+.eyeball-r {
+  transform: rotate(-20deg);
+}
+.nose {
+  height: 1em;
+  width: 1em;
+  background-color: #3f3554;
+  position: absolute;
+  top: 4.37em;
+  margin: auto;
+  left: 0;
+  right: 0;
+  border-radius: 1.2em 0 0 0.25em;
+  transform: rotate(45deg);
+}
+.nose:before {
+  content: "";
+  position: absolute;
+  background-color: #3f3554;
+  height: 0.6em;
+  width: 0.1em;
+  transform: rotate(-45deg);
+  top: 0.75em;
+  left: 1em;
+}
+.mouth,
+.mouth:before {
+  height: 0.75em;
+  width: 0.93em;
+  background-color: transparent;
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0.18em #3f3554;
+}
+.mouth {
+  top: 5.31em;
+  left: 3.12em;
+}
+.mouth:before {
+  content: "";
+  position: absolute;
+  left: 0.87em;
+}
+.hand-l,
+.hand-r {
+  background-color: #3f3554;
+  height: 2.81em;
+  width: 2.5em;
+  border: 0.18em solid #2e0d30;
+  border-radius: 0.6em 0.6em 2.18em 2.18em;
+  transition: 1s all;
+  position: absolute;
+  top: 8.4em;
+}
+.hand-l {
+  left: 7.5em;
+}
+.hand-r {
+  right: 7.5em;
+}
+.paw-l,
+.paw-r {
+  background-color: #3f3554;
+  height: 3.12em;
+  width: 3.12em;
+  border: 0.18em solid #2e0d30;
+  border-radius: 2.5em 2.5em 1.2em 1.2em;
+  position: absolute;
+  top: 26.56em;
+}
+.paw-l {
+  left: 10em;
+}
+.paw-r {
+  right: 10em;
+}
+.paw-l:before,
+.paw-r:before {
+  position: absolute;
+  content: "";
+  background-color: #ffffff;
+  height: 1.37em;
+  width: 1.75em;
+  top: 1.12em;
+  left: 0.55em;
+  border-radius: 1.56em 1.56em 0.6em 0.6em;
+}
+.paw-l:after,
+.paw-r:after {
+  position: absolute;
+  content: "";
+  background-color: #ffffff;
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 50%;
+  top: 0.31em;
+  left: 1.12em;
+  box-shadow: 0.87em 0.37em #ffffff, -0.87em 0.37em #ffffff;
+}
+@media screen and (max-width: 500px) {
+  .container {
+    font-size: 14px;
+  }
+}
+  </style>
+    <div class="container">
+      <form method="post">
+        <label for="username">Email:</label>
+        <input type="text" name="email" id="username" placeholder="Email here..." />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password here..." />
+        <button name="login">Login</button>
+      </form>
+      <div class="ear-l"></div>
+      <div class="ear-r"></div>
+      <div class="panda-face">
+        <div class="blush-l"></div>
+        <div class="blush-r"></div>
+        <div class="eye-l">
+          <div class="eyeball-l"></div>
         </div>
+        <div class="eye-r">
+          <div class="eyeball-r"></div>
+        </div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="hand-l"></div>
+      <div class="hand-r"></div>
+      <div class="paw-l"></div>
+      <div class="paw-r"></div>
+
+	  <h1><?php @$success?></h1>
+	  <h1><?php @$exist?></h1>
     </div>
+    <!-- Script -->
+    <script>
 
-    
-</body>
 
+let usernameRef = document.getElementById("username");
+let passwordRef = document.getElementById("password");
+let eyeL = document.querySelector(".eyeball-l");
+let eyeR = document.querySelector(".eyeball-r");
+let handL = document.querySelector(".hand-l");
+let handR = document.querySelector(".hand-r");
+
+let normalEyeStyle = () => {
+  eyeL.style.cssText = `
+    left:0.6em;
+    top: 0.6em;
+  `;
+  eyeR.style.cssText = `
+  right:0.6em;
+  top:0.6em;
+  `;
+};
+
+let normalHandStyle = () => {
+  handL.style.cssText = `
+        height: 2.81em;
+        top:8.4em;
+        left:7.5em;
+        transform: rotate(0deg);
+    `;
+  handR.style.cssText = `
+        height: 2.81em;
+        top: 8.4em;
+        right: 7.5em;
+        transform: rotate(0deg)
+    `;
+};
+//When clicked on username input
+usernameRef.addEventListener("focus", () => {
+  eyeL.style.cssText = `
+    left: 0.75em;
+    top: 1.12em;  
+  `;
+  eyeR.style.cssText = `
+    right: 0.75em;
+    top: 1.12em;
+  `;
+  normalHandStyle();
+});
+//When clicked on password input
+passwordRef.addEventListener("focus", () => {
+  handL.style.cssText = `
+        height: 6.56em;
+        top: 3.87em;
+        left: 11.75em;
+        transform: rotate(-155deg);    
+    `;
+  handR.style.cssText = `
+    height: 6.56em;
+    top: 3.87em;
+    right: 11.75em;
+    transform: rotate(155deg);
+  `;
+  normalEyeStyle();
+});
+//When clicked outside username and password input
+document.addEventListener("click", (e) => {
+  let clickedElem = e.target;
+  if (clickedElem != usernameRef && clickedElem != passwordRef) {
+    normalEyeStyle();
+    normalHandStyle();
+  }
+});
+	</script>
+  </body>
 </html>
